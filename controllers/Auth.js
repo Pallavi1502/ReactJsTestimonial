@@ -77,7 +77,7 @@ exports.sendOTP = async (req,res) => {
 };
 
 //SignUp
-exports.signup = async (re,res) =>{
+exports.signup = async (req,res) =>{
     try{
             //fetch data
         const {
@@ -140,7 +140,7 @@ exports.signup = async (re,res) =>{
 
 
         //create additional details 
-        const profileDetails = await Proile.create({
+        const profileDetails = await Profile.create({
             gender:null,
             dateOfBirth:null,
             about:null,
@@ -167,7 +167,7 @@ exports.signup = async (re,res) =>{
         console.log(error);
         return res.status(500).json({
             success:false,
-            message:"User cannot be registered"
+            message:"User cannot be registered: "+ error,
         })
     }
 };
