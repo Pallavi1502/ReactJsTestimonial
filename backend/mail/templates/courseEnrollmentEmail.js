@@ -1,4 +1,4 @@
-exports.courseEnrollmentEmail = (courseName, name) => {
+exports.courseEnrollmentEmail = (  courseName, name) => {
     return `<!DOCTYPE html>
     <html>
     
@@ -71,9 +71,8 @@ exports.courseEnrollmentEmail = (courseName, name) => {
                     alt="StudyNotion Logo"></a>
             <div class="message">Course Registration Confirmation</div>
             <div class="body">
-                <p>Dear ${name},</p>
-                <p>You have successfully registered for the course <span class="highlight">"${courseName}"</span>. We
-                    are excited to have you as a participant!</p>
+                <p>Dear ${name}, you have been successully enrolled in ${courseName}</p>
+                
                 <p>Please log in to your learning dashboard to access the course materials and start your learning journey.
                 </p>
                 <a class="cta" href="https://studynotion-edtech-project.vercel.app/dashboard">Go to Dashboard</a>

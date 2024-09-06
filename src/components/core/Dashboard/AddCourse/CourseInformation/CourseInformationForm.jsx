@@ -300,6 +300,8 @@ export default function CourseInformationForm() {
         <IconBtn
           disabled={loading}
           text={!editCourse ? "Next" : "Save Changes"}
+          customClasses= {"bg-brown-100 px-3 py-2 rounded-sm"}
+          
         >
           <MdNavigateNext />
         </IconBtn>

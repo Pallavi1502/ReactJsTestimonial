@@ -23,6 +23,10 @@ import EditCourse from "./components/core/Dashboard/EditCourse";
 import { useSelector } from "react-redux";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
+import ViewCourse from "./pages/ViewCourse";
+import VideoDetails from "./components/core/ViewCourse/VideoDetails";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 
 function App() {
@@ -33,6 +37,8 @@ function App() {
     <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="catalog/:catalogName" element={<Catalog />} />
       <Route path="courses/:courseId" element={<CourseDetails />} />
 
@@ -102,6 +108,25 @@ function App() {
             ) 
           }
         </Route>  
+
+        {/* For the watching course lectures */}
+        <Route
+          element={
+            <PrivateRoute>
+              <ViewCourse />
+            </PrivateRoute>
+          }
+        >
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route
+                path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                element={<VideoDetails />}
+              />
+            </>
+          )}
+        </Route>
+
           
 
         <Route

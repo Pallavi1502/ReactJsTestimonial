@@ -42,6 +42,12 @@ const {
   getAllRating,
 } = require("../controllers/RatingAndReview")
 
+
+const {
+  updateCourseProgress,
+  // getProgressPercentage,
+} = require("../controllers/CourseProgress")
+
 // Importing Middlewares
 const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth")
 
@@ -72,7 +78,7 @@ router.get("/getAllCourses", getAllCourses)
 router.post("/getCourseDetails", getCourseDetails)
 router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 // To Update Course Progress
-// router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress)
+router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress)
 // To get Course Progress
 // router.post("/getProgressPercentage", auth, isStudent, getProgressPercentage)
 // Delete a Course
