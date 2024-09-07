@@ -8,7 +8,7 @@ tailwind.config.js
 .pnp.js
 README.md
 
-#SECRET
+#Secret
 .env
 
 package.json
