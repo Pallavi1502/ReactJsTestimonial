@@ -10,6 +10,7 @@ README.md
 
 #Secret
 .env
+backend/.env
 
 package.json
 package-lock.json
