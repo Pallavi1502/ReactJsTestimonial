@@ -12,7 +12,7 @@ README.md
 .env
 backend/.env
 
-package.json
+
 package-lock.json
 
 # testing
