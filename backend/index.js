@@ -1,3 +1,5 @@
+
+require('dotenv').config();
 const express = require("express");
 const app = express();
 
@@ -5,17 +7,19 @@ const userRoutes = require("./routes/user");
 const profileRoutes = require("./routes/profile");
 const paymentRoutes = require("./routes/payments");
 const courseRoutes = require("./routes/course");
+const contactUsRoute = require("./routes/Contact");
+
 
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const {cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
-const dotenv = require("dotenv");
+// const dotenv = require("dotenv");
+// dotenv.config();
 
 
-dotenv.config();
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
 //database connect
 database.connect();
@@ -43,6 +47,7 @@ app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/course", courseRoutes);
 app.use("/api/v1/payment", paymentRoutes);
+app.use("/api/v1/reach", contactUsRoute);
 
 
 
@@ -55,7 +60,7 @@ app.get("/", (req, res) => {
 	});
 });
 
-app.listen(PORT, () => {
-	console.log(`App is running at ${PORT}`)
+app.listen(port, () => {
+	console.log(`App is running at ${port}`)
 })
 
