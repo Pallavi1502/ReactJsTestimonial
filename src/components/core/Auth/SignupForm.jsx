@@ -9,7 +9,7 @@ import { setSignupData } from "../../../Slices/authSlice"
 import  {ACCOUNT_TYPE}  from "../../../utils/constants"
 import Tab from "../../common/Tab"
 
-function SignupForm() {
+function Signupform() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -207,4 +207,4 @@ function SignupForm() {
   )
 }
 
-export default SignupForm
+export default Signupform
