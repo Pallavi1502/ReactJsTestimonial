@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "npm install && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,7 @@
     "nodemailer": "^6.9.9",
     "nodemon": "^3.1.0",
     "otp-generator": "^4.0.1",
+    "react-tailwind-css-starter-pack": "file:..",
     "string": "^3.3.3"
   }
 }
