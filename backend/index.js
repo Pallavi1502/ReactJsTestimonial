@@ -22,8 +22,7 @@ const path = require("path")
 // dotenv.config();
 
 
-const port = process.env.PORT
-//  || 5000;
+const port = process.env.PORT || 5000;
 
 //database connect
 database.connect();
