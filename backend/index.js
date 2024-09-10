@@ -30,12 +30,12 @@ database.connect();
 app.use(express.json());
 app.use(cookieParser());
 app.use(
-	cors({
-		origin:"http://localhost:3000",
-		// origin:"https://studynotion-fullstack-90os.onrender.com/",
-		// origin:"https://study-notion-full-stack-seven.vercel.app/",
-		credentials:true,
-	})
+	cors(
+		// origin:"http://localhost:3000",
+		// // origin:"https://studynotion-fullstack-90os.onrender.com/",
+		// // origin:"https://study-notion-full-stack-seven.vercel.app/",
+		// credentials:true,
+	)
 )
 
 app.use(
