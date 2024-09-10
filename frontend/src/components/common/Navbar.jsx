@@ -27,7 +27,7 @@ function Navbar() {
       setLoading(true)
       try {
         const res = await apiConnector("GET", categories.CATEGORIES_API)
-        console.log("API Response:", res.data.data) 
+        console.log("API Response:", res) 
         if (isMounted) {
           setSubLinks(res.data.data)  // Check if the structure is correct
         }  
