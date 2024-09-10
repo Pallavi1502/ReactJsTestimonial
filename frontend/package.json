@@ -2,7 +2,7 @@
   "name": "react-tailwind-css-starter-pack",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://studynotion-fullstack-backend.onrender.com",
+  "proxy":"http://localhost:3000",
   "dependencies": {
     "@ramonak/react-progress-bar": "^5.2.0",
     "@reduxjs/toolkit": "^2.2.1",
@@ -41,7 +41,6 @@
   "scripts": {
     "start": "node server.js",
     "build": "react-scripts build",
-    "render-build": "npm install && cd backend && npm install && cd .. && npm run build && cd backend",
     "eject": "react-scripts eject",
     "server": "cd backend && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""

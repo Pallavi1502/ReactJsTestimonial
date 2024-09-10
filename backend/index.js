@@ -18,6 +18,9 @@ const cors = require("cors");
 const {cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const path = require("path")
+// import path from 'path'
+// const fileURLToPath = require("url")
+// import {fileURLToPath} from "url"
 // const dotenv = require("dotenv");
 // dotenv.config();
 
@@ -31,35 +34,33 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-const allowedOrigins = process.env.NODE_ENV === 'production' 
-  ? ['https://studynotion-fullstack-frontend.onrender.com']  // Production URL
-  : ['http://localhost:3000'];  
-// app.use(
-// 	cors({
-// 		origin: allowedOrigins
-// 	  }
-// 		// origin:"http://localhost:3000",
-// 		// // origin:"https://studynotion-fullstack-90os.onrender.com/",
-// 		// // origin:"https://study-notion-full-stack-seven.vercel.app/",
-// 		// credentials:true,
-// 	)
-// )
-
-
+// const allowedOrigins = process.env.NODE_ENV === 'production' 
+//   ? ['https://studynotion-fullstack-frontend.onrender.com']  // Production URL
+//   : ['http://localhost:3000'];  
 app.use(
 	cors({
-		origin: function (origin, callback) {
-			// allow requests with no origin
-			// (like mobile apps or curl requests)
-			if (!origin) return callback(null, true);
-			if (allowedOrigins.indexOf(origin) === -1) {
-				var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-				return callback(new Error(msg), false);
-			}
-			return callback(null, true);
-		},
+		origin:"http://localhost:3000",
+		// // origin:"https://studynotion-fullstack-90os.onrender.com/",
+		// // origin:"https://study-notion-full-stack-seven.vercel.app/",
+		// credentials:true,
 	})
-);
+)
+
+
+// app.use(
+// 	cors({
+// 		origin: function (origin, callback) {
+// 			// allow requests with no origin
+// 			// (like mobile apps or curl requests)
+// 			if (!origin) return callback(null, true);
+// 			if (allowedOrigins.indexOf(origin) === -1) {
+// 				var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+// 				return callback(new Error(msg), false);
+// 			}
+// 			return callback(null, true);
+// 		},
+// 	})
+// );
 
 
 app.use(
@@ -78,29 +79,30 @@ app.use("/api/v1/course", courseRoutes);
 app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/contact", contactUsRoute);
 
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = path.dirname(__filename)
+const __dirname1= path.resolve()
+if(process.env.NODE_ENV === 'production'){
+	app.use(express.static(path.join(__dirname1, '/frontend/build')))
+	app.get('*', (req,res) =>{
+		res.sendFile(path.resolve(__dirname1,"frontend","build","index.html"))
+	})
 
-// const __dirname1= path.resolve()
-// if(process.env.NODE_ENV === 'production'){
-// 	app.use(express.static(path.join(__dirname1, '/frontend/build')))
-// 	app.get('*', (req,res) =>{
-// 		res.sendFile(path.resolve(__dirname1,"frontend", "build", "index.html"))
-// 	})
-
-// } else{
-// 	app.get("/", (req, res) => {
-// 		return res.json({
-// 			success:true,
-// 			message:'Your server is up and running....'
-// 		});
-// 	});
-// }
-
-app.get("/", (req, res) => {
-	return res.json({
-		success:true,
-		message:'Your server is up and running....'
+} else{
+	app.get("/", (req, res) => {
+		return res.json({
+			success:true,
+			message:'Your server is up and running....'
+		});
 	});
-});
+}
+
+// app.get("/", (req, res) => {
+// 	return res.json({
+// 		success:true,
+// 		message:'Your server is up and running....'
+// 	});
+// });
 
 //def route
 
