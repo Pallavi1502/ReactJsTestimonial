@@ -32,18 +32,35 @@ app.use(cookieParser());
 
 
 const allowedOrigins = process.env.NODE_ENV === 'production' 
-  ? ['https://your-frontend-url.vercel.app']  // Production URL
+  ? ['https://studynotion-fullstack-frontend.onrender.com']  // Production URL
   : ['http://localhost:3000'];  
+// app.use(
+// 	cors({
+// 		origin: allowedOrigins
+// 	  }
+// 		// origin:"http://localhost:3000",
+// 		// // origin:"https://studynotion-fullstack-90os.onrender.com/",
+// 		// // origin:"https://study-notion-full-stack-seven.vercel.app/",
+// 		// credentials:true,
+// 	)
+// )
+
+
 app.use(
 	cors({
-		origin: allowedOrigins
-	  }
-		// origin:"http://localhost:3000",
-		// // origin:"https://studynotion-fullstack-90os.onrender.com/",
-		// // origin:"https://study-notion-full-stack-seven.vercel.app/",
-		// credentials:true,
-	)
-)
+		origin: function (origin, callback) {
+			// allow requests with no origin
+			// (like mobile apps or curl requests)
+			if (!origin) return callback(null, true);
+			if (allowedOrigins.indexOf(origin) === -1) {
+				var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+				return callback(new Error(msg), false);
+			}
+			return callback(null, true);
+		},
+	})
+);
+
 
 app.use(
 	fileUpload({
