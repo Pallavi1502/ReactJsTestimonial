@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(
 	cors({
 		origin:"http://localhost:3000",
-		// origin:'https://studynotion-fullstack-cohp.onrender.com',
+		// origin:"https://studynotion-fullstack-90os.onrender.com/",
 		// origin:"https://study-notion-full-stack-seven.vercel.app/",
 		credentials:true,
 	})
