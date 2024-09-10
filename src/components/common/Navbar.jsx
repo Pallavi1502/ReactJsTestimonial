@@ -22,16 +22,27 @@ function Navbar() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    let isMounted = true
     ;(async () => {
       setLoading(true)
       try {
         const res = await apiConnector("GET", categories.CATEGORIES_API)
-        setSubLinks(res.data.data)
+        console.log("API Response:", res.data) 
+        if (isMounted) {
+          setSubLinks(res.data.data)  // Check if the structure is correct
+        }  
       } catch (error) {
         console.log("Could not fetch Categories.", error)
       }
-      setLoading(false)
+      finally {
+        if (isMounted) {
+          setLoading(false)
+        }
+      }  
     })()
+    return () => {
+      isMounted = false
+    }
   }, [])
 
 
