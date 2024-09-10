@@ -29,8 +29,15 @@ database.connect();
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
+
+
+const allowedOrigins = process.env.NODE_ENV === 'production' 
+  ? ['https://your-frontend-url.vercel.app']  // Production URL
+  : ['http://localhost:3000'];  
 app.use(
-	cors(
+	cors({
+		origin: allowedOrigins
+	  }
 		// origin:"http://localhost:3000",
 		// // origin:"https://studynotion-fullstack-90os.onrender.com/",
 		// // origin:"https://study-notion-full-stack-seven.vercel.app/",
@@ -55,28 +62,28 @@ app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/contact", contactUsRoute);
 
 
-const __dirname1= path.resolve()
-if(process.env.NODE_ENV === 'production'){
-	app.use(express.static(path.join(__dirname1, '/frontend/build')))
-	app.get('*', (req,res) =>{
-		res.sendFile(path.resolve(__dirname1,"frontend", "build", "index.html"))
-	})
+// const __dirname1= path.resolve()
+// if(process.env.NODE_ENV === 'production'){
+// 	app.use(express.static(path.join(__dirname1, '/frontend/build')))
+// 	app.get('*', (req,res) =>{
+// 		res.sendFile(path.resolve(__dirname1,"frontend", "build", "index.html"))
+// 	})
 
-} else{
-	app.get("/", (req, res) => {
-		return res.json({
-			success:true,
-			message:'Your server is up and running....'
-		});
-	});
-}
-
-// app.get("/", (req, res) => {
-// 	return res.json({
-// 		success:true,
-// 		message:'Your server is up and running....'
+// } else{
+// 	app.get("/", (req, res) => {
+// 		return res.json({
+// 			success:true,
+// 			message:'Your server is up and running....'
+// 		});
 // 	});
-// });
+// }
+
+app.get("/", (req, res) => {
+	return res.json({
+		success:true,
+		message:'Your server is up and running....'
+	});
+});
 
 //def route
 
