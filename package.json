@@ -41,7 +41,7 @@
   "scripts": {
     "start": "cd backend && node server.js",
     "build": "react-scripts build",
-    "render-build": "npm run build && cd backend && npm install" ,
+    "render-build": "npm install && npm run build && cd backend && npm install",
     "eject": "react-scripts eject",
     "server": "cd backend && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""
